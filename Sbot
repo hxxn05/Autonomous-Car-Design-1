@@ -1,0 +1,96 @@
+#include <NewPing.h>
+
+#define IN1 11
+#define IN2 10
+#define ENR 6
+
+#define IN3 9
+#define IN4 8
+#define ENL 7
+
+void setup()
+{
+  pinMode (IN1, OUTPUT);
+  pinMode (IN2, OUTPUT);
+  pinMode (IN3, OUTPUT);
+  pinMode (IN4, OUTPUT);
+  pinMode (ENL, OUTPUT);
+  pinMode (ENR, OUTPUT);
+}
+
+// 왼쪽 모터 제어 함수
+void motor_l(int speed)
+{
+  if (speed >= 0)
+  {
+    digitalWrite(IN1, LOW);
+    digitalWrite(IN2, HIGH);
+    analogWrite (ENL, speed); // 왼쪽 모터 속도 조절
+  } 
+  else
+  {
+    digitalWrite(IN1, HIGH);
+    digitalWrite(IN2, LOW);
+    analogWrite (ENL, -speed); // 왼쪽 모터 속도 조절
+  }
+}
+
+// 오른쪽 모터 제어 함수
+void motor_r(int speed)
+{
+  if (speed >= 0)
+  {
+    digitalWrite(IN3, LOW);
+    digitalWrite(IN4, HIGH);
+    analogWrite (ENR, speed); // 오른쪽 모터 속도 조절
+  } 
+  else
+  {
+    digitalWrite(IN3, HIGH);
+    digitalWrite(IN4, LOW);
+    analogWrite (ENR, -speed); // 오른쪽 모터 속도 조절
+  }
+}
+
+void robot_contorl(int left_motor_speed, int right_motor_speed)
+{
+  
+  motor_l(left_motor_speed);
+  motor_r(right_motor_speed);
+  
+}
+
+void loop() 
+{
+  robot_contorl(0, 0);
+  delay(700);
+  
+  // 직진
+  robot_contorl(150, 150);
+  delay(1000);   
+  robot_contorl(0, 0);  // 정지
+  delay(1000);
+
+  // 오른쪽 회전
+  robot_contorl(110, -80);
+  delay(720);   // 회전하는 시간
+  robot_contorl(0, 0);  // 정지
+
+  // 직진
+  robot_contorl(150, 150);
+  delay(1000);   
+  robot_contorl(0, 0);  // 정지
+  delay(1000);
+
+  // 왼쪽 회전
+  robot_contorl(-80, 115);
+  delay(720);   // 회전하는 시간
+  robot_contorl(0, 0);  // 정지
+
+  // 직진
+  robot_contorl(150, 150);
+  delay(1000);   
+  robot_contorl(0, 0);  // 정지
+  
+}
+// 멈춰 오른쪽 돌아 멈춰 앞으로 가 멈춰 왼쪽으로 멈춰 멈춰 오른쪽 돌지
