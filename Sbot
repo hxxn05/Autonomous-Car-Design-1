@@ -66,31 +66,30 @@ void loop()
   delay(700);
   
   // 직진
-  robot_contorl(150, 150);
+  robot_control(150, 150);
   delay(1000);   
   robot_contorl(0, 0);  // 정지
   delay(1000);
 
   // 오른쪽 회전
-  robot_contorl(110, -80);
+  robot_control(110, -80);
   delay(720);   // 회전하는 시간
   robot_contorl(0, 0);  // 정지
 
   // 직진
-  robot_contorl(150, 150);
+  robot_control(150, 150);
   delay(1000);   
-  robot_contorl(0, 0);  // 정지
+  robot_control(0, 0);  // 정지
   delay(1000);
 
   // 왼쪽 회전
-  robot_contorl(-80, 115);
+  robot_control(-80, 115);
   delay(720);   // 회전하는 시간
   robot_contorl(0, 0);  // 정지
 
   // 직진
-  robot_contorl(150, 150);
+  robot_control(150, 150);
   delay(1000);   
-  robot_contorl(0, 0);  // 정지
+  robot_control(0, 0);  // 정지
   
 }
-// 멈춰 오른쪽 돌아 멈춰 앞으로 가 멈춰 왼쪽으로 멈춰 멈춰 오른쪽 돌지
